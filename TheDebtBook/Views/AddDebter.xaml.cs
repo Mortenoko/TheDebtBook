@@ -31,6 +31,10 @@ namespace TheDebtBook.Views
 
         public AddDebter AddDebterViewModel { get; set; }
 
+        private void GemBtn_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = true;
+        }
     }
 
     public class DebterEvent : EventArgs

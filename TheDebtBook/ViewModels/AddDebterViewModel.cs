@@ -14,14 +14,14 @@ namespace TheDebtBook.ViewModels
     public class AddDebterViewModel : BindableBase
     {
         private double currentDebt;
-        public Debter debter { get; set; }
+        public Debter Debter { get; set; }
 
        
 
         public AddDebterViewModel()
         {
-            debter = new Debter("JohnJohn", 300);
-            currentDebt = 0.0;
+            Debter = new Debter("Navn her");
+            currentDebt = 0;
         }
 
         public double CurrentDebt
@@ -38,6 +38,29 @@ namespace TheDebtBook.ViewModels
 
 
 
+        ICommand _addDebterCommand;
+        public ICommand AddDebterCommand
+        {
+            get
+            {
+                return _addDebterCommand ?? (_addDebterCommand = new DelegateCommand(
+                    AddDebterCommand_Execute, AddDebterCommand_CanExecute)
+                    .ObservesProperty(() => Debter.Name)
+                    .ObservesProperty(() => Debter.Indebted));
+            }
+        }
+
+        private void AddDebterCommand_Execute()
+        {
+
+        }
+
+        private bool AddDebterCommand_CanExecute()
+        {
+            return true;
+        }
+
+        /*
         ICommand _AddDebterCommand;
         public ICommand AddDebterCommand
         {
@@ -47,17 +70,19 @@ namespace TheDebtBook.ViewModels
             }
         }
 
+        
         private void AddDebter()
         {
-            debter.AddDebt(currentDebt);
+            Debter.AddDebt(currentDebt);
             var args = new DebterEvent();
-            args.Debter = debter;
+            args.Debter = Debter;
             AddDebterEvent?.Invoke(this, args);
+            this.Close();
 
         }
 
         public event EventHandler<DebterEvent> AddDebterEvent; 
-        
+        */
 
 
     }

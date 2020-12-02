@@ -15,7 +15,7 @@ namespace TheDebtBook.ViewModels
     public class MainWindowViewModel : BindableBase
     {
 
-        private Debter currentDebter = null;
+        
         private ObservableCollection<Debter> debters;
 
         public MainWindowViewModel()
@@ -36,6 +36,9 @@ namespace TheDebtBook.ViewModels
             }
         }
 
+
+        private Debter currentDebter = null;
+
         public Debter CurrentDebter
         {
             get
@@ -52,7 +55,11 @@ namespace TheDebtBook.ViewModels
 
 
         private ICommand _AddNewDebterCommand;
-        public ICommand AddNewDebterCommand => _AddNewDebterCommand ?? (_AddNewDebterCommand = new DelegateCommand(() =>
+        public ICommand AddNewDebterCommand
+        {
+            get
+            {
+                return _AddNewDebterCommand ?? (_AddNewDebterCommand = new DelegateCommand(() =>
 
             {
                 var newDebter = new Debter();
@@ -70,6 +77,8 @@ namespace TheDebtBook.ViewModels
                 }
 
             }));
+            }
+        }
 
 
 

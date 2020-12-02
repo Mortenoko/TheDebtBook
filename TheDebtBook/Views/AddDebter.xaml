@@ -4,8 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TheDebtBook.Views"
+        xmlns:viewmodels="clr-namespace:TheDebtBook.ViewModels"
         mc:Ignorable="d"
         Title="AddDebter" Height="200" Width="500">
+    <Window.DataContext>
+        <viewmodels:AddDebterViewModel/>
+    </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -31,7 +35,7 @@
                  BorderBrush="Gray"
                  TabIndex="1"
                  Background="LightGray"
-                 Text="{Binding Debter.Name, UpdateSourceTrigger=PropertyChanged}"
+                 Text="{Binding Debter.Name}"
                  />
 
         <TextBox Grid.Column="1"
@@ -45,7 +49,7 @@
                  BorderBrush="Gray"
                  Background="LightGray"
                  TabIndex="2"
-                 Text="{Binding newDebt, UpdateSourceTrigger=PropertyChanged}"/>
+                 Text="{Binding CurrentDebt}"/>
 
 
         <WrapPanel Grid.Column="1"
@@ -60,7 +64,8 @@
                     BorderBrush="Gray"
                     Name="GemBtn"
                     Content="Gem"
-                    Command="{Binding Path=AddDebt}"
+                    Command="{Binding Path = AddDebterCommand}"
+                    Click="GemBtn_Click"
                     TabIndex="3"
                     />
             <Button IsCancel="True" 

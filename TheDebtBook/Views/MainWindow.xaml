@@ -8,8 +8,10 @@
         xmlns:viewmodels="clr-namespace:TheDebtBook.ViewModels"
         xmlns:prism="http://prismlibrary.com/"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"
-        DataContext="{Binding Path=MainWindowVieModel}">
+        Title="MainWindow" Height="450" Width="800">
+    <Window.DataContext>
+        <viewmodels:MainWindowViewModel />
+    </Window.DataContext>
         
     <Grid>
         <Grid.ColumnDefinitions>
@@ -42,10 +44,9 @@
                 
                 />
 
-        <DataGrid ItemsSource="{Binding Path= Debter}"
+        <ListView ItemsSource="{Binding Debters}"
                   SelectedItem="{Binding CurrentPerson}"
-                  CanUserAddRows="false"
-                  CanUserDeleteRows="False"
+                  IsSynchronizedWithCurrentItem="True"
                   Margin="10,12,10,10"
                   Grid.Row="1"
                   HorizontalAlignment="Center"
@@ -54,10 +55,14 @@
                   Background="LightGray"
                   Height="313">
 
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Navn" Binding="{Binding Name}" Width="*"/>
-                <DataGridTextColumn Header="Beløb" Binding="{Binding Amount}" Width="*"/>
-            </DataGrid.Columns>
+            <ListView.View>
+                <GridView>
+                    <GridView.Columns>
+                        <GridViewColumn Header="Navn" Width="200" DisplayMemberBinding="{Binding Name}"/>
+                        <GridViewColumn Header="Gæld" Width="200" DisplayMemberBinding="{Binding Indebted}"/>
+                    </GridView.Columns>
+                </GridView>
+            </ListView.View>
 
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="DoubleClick">
@@ -65,6 +70,6 @@
                 </i:EventTrigger>
             </i:Interaction.Triggers>
 
-        </DataGrid>
+        </ListView>
     </Grid>
 </Window>
