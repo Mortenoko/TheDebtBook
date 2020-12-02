@@ -12,53 +12,64 @@ namespace TheDebtBook.Models
 {
     public class Debter : BindableBase
     {
-        public String Name { get; set; }
+        private string name;
+        private double indebted;
+        private List<Debt> debtList;
 
 
-        private double indebted_;
+        public string Name
+        {
+            get
+            {
+                return name;
+            }
+            set
+            {
+                SetProperty(ref name, value);
+            }
+        }
+
+
         public double Indebted
         {
             get
             {
-                return indebted_;
-            }
-            private set
-            {
-                SetProperty(ref indebted_, value);
-            }
-        }
-
-        private ObservableCollection<Debt> debts;
-        public ObservableCollection<Debt> Debts
-        {
-            get
-            {
-                return debts;
+                return indebted;
             }
             set
             {
-                SetProperty(ref debts, value);
+                SetProperty(ref indebted, value);
             }
+        }
+
+        public List<Debt>DebtList
+        {
+            get
+            {
+                return debtList;
+            }
+            set
+            {
+                SetProperty(ref debtList, value);
+            }
+        }
+
+        public Debter Clone()
+        {
+            return this.MemberwiseClone() as Debter;
         }
 
         public Debter()
         {
-
+            DebtList = new List<Debt>();
         }
 
         public Debter(string name)
         {
             Name = name;
-            debts = new ObservableCollection<Debt>();
+            DebtList = new List<Debt>();
         }
-            
-
-        public void AddDebt(double value)
-        {
-            Indebted += value;
-            Debts.Add(new Debt(value));
-        }
-        
+                    
         
     }
 }

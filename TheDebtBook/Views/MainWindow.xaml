@@ -44,32 +44,26 @@
                 
                 />
 
-        <ListView ItemsSource="{Binding Debters}"
+        <DataGrid Name="ListOfDebters"
+                  ItemsSource="{Binding Debters}"
                   SelectedItem="{Binding CurrentPerson}"
                   IsSynchronizedWithCurrentItem="True"
-                  Margin="10,12,10,10"
                   Grid.Row="1"
+                  Width="500"
+                  IsReadOnly="True"
                   HorizontalAlignment="Center"
                   VerticalAlignment="Center"
                   BorderBrush="Black"
                   Background="LightGray"
                   Height="313">
 
-            <ListView.View>
-                <GridView>
-                    <GridView.Columns>
-                        <GridViewColumn Header="Navn" Width="200" DisplayMemberBinding="{Binding Name}"/>
-                        <GridViewColumn Header="Gæld" Width="200" DisplayMemberBinding="{Binding Indebted}"/>
-                    </GridView.Columns>
-                </GridView>
-            </ListView.View>
 
             <i:Interaction.Triggers>
-                <i:EventTrigger EventName="DoubleClick">
-                    <i:InvokeCommandAction Command="{Binding Path=EditDebterCommand}"/>
+                <i:EventTrigger EventName="MouseDoubleClick">
+                    <i:InvokeCommandAction Command="{Binding EditDebterCommand}"/>
                 </i:EventTrigger>
             </i:Interaction.Triggers>
 
-        </ListView>
+        </DataGrid>
     </Grid>
 </Window>

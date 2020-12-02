@@ -7,9 +7,7 @@
         xmlns:viewmodels="clr-namespace:TheDebtBook.ViewModels"
         mc:Ignorable="d"
         Title="AddDebter" Height="200" Width="500">
-    <Window.DataContext>
-        <viewmodels:AddDebterViewModel/>
-    </Window.DataContext>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -35,7 +33,7 @@
                  BorderBrush="Gray"
                  TabIndex="1"
                  Background="LightGray"
-                 Text="{Binding Debter.Name}"
+                 Text="{Binding Path=Debter.Name}"
                  />
 
         <TextBox Grid.Column="1"
@@ -49,7 +47,7 @@
                  BorderBrush="Gray"
                  Background="LightGray"
                  TabIndex="2"
-                 Text="{Binding CurrentDebt}"/>
+                 Text="{Binding Path=Debter.Indebted}"/>
 
 
         <WrapPanel Grid.Column="1"

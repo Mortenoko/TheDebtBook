@@ -15,11 +15,10 @@ namespace TheDebtBook.Models
         private DateTime date;
         private double amount;
 
-        public Debt(double amount)
+        public Debt()
         {
-            Amount = amount;
-            date = DateTime.Now;
         }
+
         public DateTime Date
         {
             get

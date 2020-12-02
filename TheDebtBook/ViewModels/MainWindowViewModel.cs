@@ -15,7 +15,7 @@ namespace TheDebtBook.ViewModels
     public class MainWindowViewModel : BindableBase
     {
 
-        
+
         private ObservableCollection<Debter> debters;
 
         public MainWindowViewModel()
@@ -36,6 +36,19 @@ namespace TheDebtBook.ViewModels
             }
         }
 
+
+        private int currentIndex = -1;
+        public int CurrentIndex
+        {
+            get
+            {
+                return currentIndex;
+            }
+            set
+            {
+                SetProperty(ref currentIndex, value);
+            }
+        }
 
         private Debter currentDebter = null;
 
@@ -63,7 +76,7 @@ namespace TheDebtBook.ViewModels
 
             {
                 var newDebter = new Debter();
-                var vm = new AddDebterViewModel();
+                var vm = new AddDebterViewModel(newDebter);
 
                 var view = new AddDebter()
                 {
@@ -89,17 +102,33 @@ namespace TheDebtBook.ViewModels
         private ICommand _EditDebterCommand;
         public ICommand EditDebterCommand
         {
+
             get 
             {
-                return _EditDebterCommand ?? (_EditDebterCommand = new DelegateCommand(EditDebterWindow));
+                return _EditDebterCommand ?? (_EditDebterCommand = new DelegateCommand(() =>
+                {
+                    var tempDebter = CurrentDebter.Clone();
+                    var vm = new AddDebtViewModel(tempDebter);
+
+                    PersonDebt win = new PersonDebt
+                    {
+                        DataContext = vm,
+                        Owner = App.Current.MainWindow
+                    };
+                    if (win.ShowDialog() == true)
+                    {
+                        CurrentDebter.Indebted = tempDebter.Indebted;
+                        CurrentDebter.Name = tempDebter.Name;
+
+                    }
+                },
+                () =>
+                {
+                    return CurrentIndex >= 0;
+                }
+                ).ObservesProperty(() => CurrentIndex));
             }
         }
 
-        private void EditDebterWindow()
-        {
-            PersonDebt EditDebterWin = new PersonDebt();
-
-            EditDebterWin.Show();
-        }
     }
 }

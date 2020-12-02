@@ -18,10 +18,9 @@ namespace TheDebtBook.ViewModels
 
        
 
-        public AddDebterViewModel()
+        public AddDebterViewModel(Debter debter)
         {
-            Debter = new Debter("Navn her");
-            currentDebt = 0;
+            Debter = debter;
         }
 
         public double CurrentDebt
@@ -52,7 +51,11 @@ namespace TheDebtBook.ViewModels
 
         private void AddDebterCommand_Execute()
         {
-
+            Debter.DebtList.Add(new Debt
+            {
+                Amount = Debter.Indebted,
+                Date = DateTime.Now
+            });
         }
 
         private bool AddDebterCommand_CanExecute()

@@ -9,34 +9,23 @@ using System.Windows;
 using Prism.Commands;
 using System.Windows.Input;
 using Prism.Services.Dialogs;
+using System.Collections.ObjectModel;
 
 namespace TheDebtBook.ViewModels
 {
     class AddDebtViewModel : BindableBase
     {
         public Debter Debter { get; set; }
+        public ObservableCollection<Debt> Debts { get; private set; }
+        private double debtAmount { get; set; }
 
-        public Window Window { get; set; }
-
-        private double _debtAmount = 0.0; 
+        public AddDebtViewModel(Debter debter)
+        {
+            Debts = new ObservableCollection<Debt>(debter.DebtList);
+            Debter = debter;
+        }
 
         
-        private void CloseWindow()
-        {
-            Window.Close();
-        }
-
-        private double debtAmount
-        {
-            get
-            {
-                return _debtAmount;
-            }
-            set
-            {
-                SetProperty(ref _debtAmount, value);
-            }
-        }
 
         private ICommand _AddDebtCommand;
         public ICommand AddDebtCommand
@@ -50,10 +39,19 @@ namespace TheDebtBook.ViewModels
 
         private void AddDebt()
         {
-            Debter.AddDebt(debtAmount);
+            var debt = new Debt
+            {
+                Amount = debtAmount,
+                Date = DateTime.Now
+            };
+
+            Debts.Add(debt);
+            Debter.DebtList.Add(debt);
+            Debter.Indebted += debtAmount;
+
         }
 
-
+        /*
         private ICommand _CloseWindowCommand;
         public ICommand CloseWindowCommand
         {
@@ -62,6 +60,7 @@ namespace TheDebtBook.ViewModels
                 return _CloseWindowCommand ?? (_CloseWindowCommand = new DelegateCommand(CloseWindow));
             }
         }
+        */
 
 
 
