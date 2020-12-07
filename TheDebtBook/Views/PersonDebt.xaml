@@ -18,13 +18,9 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <DataGrid ItemsSource="{Binding Path=Debt}"
-                  AutoGenerateColumns="False"
+        <DataGrid ItemsSource="{Binding Path=Debts}"
                   Grid.Row="1"
                   Margin="15"
-                  BorderBrush="DarkKhaki"
-                  BorderThickness="3"
-                  GridLinesVisibility="All"
                   
                   
                   
@@ -45,7 +41,7 @@
                Margin="10"
                />
 
-        <TextBox Text="{Binding Path = Amount}"
+        <TextBox 
                  Grid.Row="1"
                  Grid.Column="1"
                  Height="23"
@@ -53,22 +49,24 @@
                  HorizontalAlignment="Center"
                  VerticalAlignment="Top"
                  Margin="0,50"
+                 Text="{Binding Path=debtAmount}"
                  />
 
-        <Button IsCancel="True"
-                Content="Annuller"
+        <Button Content="Gem"
                 Grid.Row="2"
                 Margin="5"
                 Width="150"
+                Click="Button_Click"
                 />
 
-        <Button Command="{Binding AddDebt}"
+        <Button Command="{Binding AddDebtCommand}"
                 Content="Tilføj gæld"
                 Grid.Row="2"
                 Grid.Column="1"
                 Width="150"
-                Margin="5"
-                Click="Button_Click"
+                Margin="57,0,57,5"
+                Height="32" 
+                VerticalAlignment="Bottom"
                 />
 
 

@@ -17,7 +17,7 @@ namespace TheDebtBook.ViewModels
     {
         public Debter Debter { get; set; }
         public ObservableCollection<Debt> Debts { get; private set; }
-        private double debtAmount { get; set; }
+        public int debtAmount { get; set; }
 
         public AddDebtViewModel(Debter debter)
         {

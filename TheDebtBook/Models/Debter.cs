@@ -61,15 +61,16 @@ namespace TheDebtBook.Models
 
         public Debter()
         {
-            DebtList = new List<Debt>();
+            debtList = new List<Debt>();
         }
 
+        /*
         public Debter(string name)
         {
             Name = name;
             DebtList = new List<Debt>();
         }
-                    
+          */          
         
     }
 }

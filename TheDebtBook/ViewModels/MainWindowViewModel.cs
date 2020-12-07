@@ -117,9 +117,8 @@ namespace TheDebtBook.ViewModels
                     };
                     if (win.ShowDialog() == true)
                     {
+                        CurrentDebter.DebtList = tempDebter.DebtList;
                         CurrentDebter.Indebted = tempDebter.Indebted;
-                        CurrentDebter.Name = tempDebter.Name;
-
                     }
                 },
                 () =>

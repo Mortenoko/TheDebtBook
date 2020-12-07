@@ -46,7 +46,8 @@
 
         <DataGrid Name="ListOfDebters"
                   ItemsSource="{Binding Debters}"
-                  SelectedItem="{Binding CurrentPerson}"
+                  SelectedItem="{Binding CurrentDebter}"
+                  SelectedIndex="{Binding CurrentIndex}"
                   IsSynchronizedWithCurrentItem="True"
                   Grid.Row="1"
                   Width="500"
