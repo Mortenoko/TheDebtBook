@@ -24,11 +24,6 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Image 
-            Grid.Row="1"
-            VerticalAlignment="Center"
-            HorizontalAlignment="Center"
-            Source="C:\Users\mortk\source\repos\Gui Opgave 1\TheDebtBook\TheDebtBook\Billeder\Mikkel.jpg" Margin="40,50,49,35" Grid.Column="1"/>
 
         <Button Grid.Column="1" 
                 Grid.Row="1" 
